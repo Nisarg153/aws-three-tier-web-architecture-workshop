@@ -3,9 +3,6 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo 🔧 Installing Docker if not present...
-      - yum install -y docker
-      - service docker start
       - echo 🔐 Logging into Amazon ECR...
       - ACCOUNT_ID=029197504624
       - REGION=us-east-1
@@ -25,7 +22,7 @@ phases:
     commands:
       - echo 📤 Pushing Docker image to Amazon ECR...
       - docker push $ECR_URI:$IMAGE_TAG
-      - echo ✅ Docker build and push to ECR completed.
+      - echo ✅ Docker build and push completed successfully.
 
 artifacts:
   files:
