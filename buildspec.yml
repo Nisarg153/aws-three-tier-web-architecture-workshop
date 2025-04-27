@@ -3,12 +3,12 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 16  # or any runtime you prefer, safe for static sites too
+      nodejs: 16
     commands:
       - echo "Nothing to install for static site"
   pre_build:
     commands:
-      - echo "Pre-build phase: clean previous builds"
+      - echo "Pre-build phase: cleaning old builds"
       - rm -rf build || true
       - mkdir build
   build:
