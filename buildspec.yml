@@ -3,12 +3,13 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo 🔧 Setting environment variables
+      - export ACCOUNT_ID=029197504624
+      - export REGION=us-east-1
+      - export REPO_NAME=aws-three-tier-webapp
+      - export IMAGE_TAG=latest
+      - export ECR_URI=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPO_NAME
       - echo 🔐 Logging into Amazon ECR...
-      - ACCOUNT_ID=029197504624
-      - REGION=us-east-1
-      - REPO_NAME=aws-three-tier-webapp
-      - IMAGE_TAG=latest
-      - ECR_URI=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPO_NAME
       - aws --version
       - aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
 
