@@ -21,6 +21,6 @@ phases:
 artifacts:
   files:
     - appspec.yml
-    - scripts/**
+    - scripts/**  # 👈 This line is important
     - application-code/app-tier/**
     - application-code/web-tier/build/**
