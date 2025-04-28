@@ -3,24 +3,25 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Current Directory:"
-      - pwd
-      - ls -al
-      - cd aws-three-tier-web-architecture-workshop/application-code/app-tier
+      - echo Installing backend dependencies...
+      - cd application-code/app-tier
       - npm install
-      - cd ../../web-tier
+      - cd ../../
+      - echo Installing frontend dependencies...
+      - cd application-code/web-tier
       - npm install
   build:
     commands:
-      - echo "Building frontend..."
-      - cd aws-three-tier-web-architecture-workshop/application-code/web-tier
+      - echo Building frontend...
+      - cd application-code/web-tier
       - npm run build
   post_build:
     commands:
-      - echo "Build phase completed."
+      - echo Build phase completed.
+
 artifacts:
   files:
     - appspec.yml
     - scripts/**
-    - aws-three-tier-web-architecture-workshop/application-code/app-tier/**
-    - aws-three-tier-web-architecture-workshop/application-code/web-tier/build/**
+    - application-code/app-tier/**
+    - application-code/web-tier/build/**
