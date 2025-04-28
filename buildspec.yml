@@ -1,31 +1,26 @@
 version: 0.2
 
 phases:
-  pre_build:
+  install:
     commands:
-      - echo 🔧 Setting environment variables
-      - export ACCOUNT_ID=029197504624
-      - export REGION=us-east-1
-      - export REPO_NAME=aws-three-tier-webapp
-      - export IMAGE_TAG=latest
-      - export ECR_URI=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPO_NAME
-      - echo 🔐 Logging into Amazon ECR...
-      - aws --version
-      - aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
-
+      - echo Installing backend dependencies...
+      - cd application-code/app-tier
+      - npm install
+      - cd ../../
+      - echo Installing frontend dependencies...
+      - cd application-code/web-tier
+      - npm install
   build:
     commands:
-      - echo 🛠️ Building Docker image...
-      - docker build -t $REPO_NAME .
-      - docker tag $REPO_NAME:$IMAGE_TAG $ECR_URI:$IMAGE_TAG
-
+      - echo Building frontend...
+      - npm run build
   post_build:
     commands:
-      - echo 📤 Pushing Docker image to Amazon ECR...
-      - docker push $ECR_URI:$IMAGE_TAG
-      - echo ✅ Docker build and push completed successfully.
+      - echo Preparing deployment artifacts...
 
 artifacts:
   files:
     - appspec.yml
-    - scripts/*
+    - scripts/**
+    - application-code/app-tier/**
+    - application-code/web-tier/build/**
