@@ -3,12 +3,9 @@ set -e
 
 echo "Installing backend dependencies after deployment..."
 
-# Check if npm exists
-if ! command -v npm &> /dev/null
-then
-    echo "npm could not be found. Please install Node.js and npm."
-    exit 1
-fi
+# Fix permissions
+sudo chown -R ec2-user:ec2-user /home/ec2-user/myapp
 
+# Now install backend dependencies
 cd /home/ec2-user/myapp/backend
 npm install
