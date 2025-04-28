@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing backend dependencies...
+      - cd application-code/app-tier
+      - npm install
+      - cd ../../
+      - echo Installing frontend dependencies...
+      - cd application-code/web-tier
+      - npm install
+  build:
+    commands:
+      - echo Building frontend...
+      - cd application-code/web-tier
+      - npm run build
+  post_build:
+    commands:
+      - echo Build phase completed.
+
+artifacts:
+  files:
+    - appspec.yml
+    - scripts/**
+    - application-code/app-tier/**
+    - application-code/web-tier/build/**
