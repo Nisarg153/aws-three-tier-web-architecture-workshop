@@ -17,6 +17,7 @@ phases:
       - ls -al
       - echo Building frontend...
       - npm run build    # 👈 No cd here! Already inside web-tier!
+      - cd ../../
   post_build:
     commands:
       - echo Build phase completed.
