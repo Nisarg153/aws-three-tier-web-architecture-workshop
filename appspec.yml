@@ -3,10 +3,10 @@ os: linux
 
 files:
   - source: application-code/app-tier
-    destination: /home/ec2-user/myapp/backend
+    destination: /home/ec2-user/application-code/app-tier
 
   - source: application-code/web-tier/build
-    destination: /home/ec2-user/myapp/frontend
+    destination: /home/ec2-user/application-code/web-tier
 
 hooks:
   BeforeInstall:
