@@ -3,16 +3,21 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing backend...
+      - echo Installing backend dependencies...
       - cd application-code/app-tier
       - npm install
-      - cd ../../web-tier
-      - echo Installing frontend...
+      - cd ../../
+      - echo Installing frontend dependencies...
+      - cd application-code/web-tier
       - npm install
   build:
     commands:
+      - echo "Build Phase - Current Directory:"
+      - pwd
+      - ls -al
       - echo Building frontend...
-      - npm run build
+      - npm run build    # 👈 No cd here! Already inside web-tier!
+      - cd ../../
   post_build:
     commands:
       - echo Build phase completed.
