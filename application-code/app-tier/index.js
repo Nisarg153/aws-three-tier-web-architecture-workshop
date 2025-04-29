@@ -16,12 +16,10 @@ app.use(bodyParser.json());
 // ROUTES FOR OUR API
 // =======================================================
 
-// Health Checking
 app.get('/health', (req, res) => {
     res.status(200).json({ message: "Server is healthy ✅" });
 });
 
-// ADD TRANSACTION
 app.post('/transaction', (req, res) => {
     try {
         console.log(req.body);
@@ -38,7 +36,6 @@ app.post('/transaction', (req, res) => {
     }
 });
 
-// GET ALL TRANSACTIONS
 app.get('/transaction', (req, res) => {
     try {
         transactionService.getAllTransactions(function (results) {
@@ -55,7 +52,6 @@ app.get('/transaction', (req, res) => {
     }
 });
 
-// DELETE ALL TRANSACTIONS
 app.delete('/transaction', (req, res) => {
     try {
         transactionService.deleteAllTransactions(function (result) {
@@ -67,7 +63,6 @@ app.delete('/transaction', (req, res) => {
     }
 });
 
-// DELETE ONE TRANSACTION BY ID
 app.delete('/transaction/id', (req, res) => {
     try {
         const { id } = req.body;
@@ -83,7 +78,6 @@ app.delete('/transaction/id', (req, res) => {
     }
 });
 
-// GET SINGLE TRANSACTION BY ID
 app.get('/transaction/id', (req, res) => {
     try {
         const { id } = req.body;
@@ -104,11 +98,11 @@ app.get('/transaction/id', (req, res) => {
     }
 });
 
-// SERVE FRONTEND BUILD (React)
-app.use(express.static(path.join(__dirname, '../../frontend/build')));
+// SERVE FRONTEND BUILD (React) from best-practice location
+app.use(express.static(path.join(__dirname, '../web-tier/build')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../web-tier/build', 'index.html'));
 });
 
 // START SERVER

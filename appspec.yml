@@ -6,7 +6,7 @@ files:
     destination: /home/ec2-user/application-code/app-tier
 
   - source: application-code/web-tier/build
-    destination: /home/ec2-user/application-code/web-tier
+    destination: /home/ec2-user/application-code/web-tier/build
 
 hooks:
   BeforeInstall:
