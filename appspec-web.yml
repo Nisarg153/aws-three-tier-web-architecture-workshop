@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+
+files:
+  - source: application-code/web-tier/build
+    destination: /home/ec2-user/web
+
+hooks:
+  AfterInstall:
+    - location: scripts/after_install_web.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: scripts/start_web.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStop:
+    - location: scripts/stop_web.sh
+      timeout: 300
+      runas: ec2-user

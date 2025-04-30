@@ -1,3 +1,4 @@
 #!/bin/bash
+
 echo "Stopping backend server..."
-pm2 stop all || true
+pm2 stop app-tier || true
