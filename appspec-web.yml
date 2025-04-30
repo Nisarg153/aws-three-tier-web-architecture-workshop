@@ -6,6 +6,11 @@ files:
     destination: /home/ec2-user/web
 
 hooks:
+  BeforeInstall:
+    - location: scripts/before_install_web.sh
+      timeout: 300
+      runas: ec2-user
+      
   AfterInstall:
     - location: scripts/after_install_web.sh
       timeout: 300
