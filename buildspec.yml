@@ -27,6 +27,4 @@ artifacts:
   files:
     - appspec-app.yml
     - appspec-web.yml
-    - scripts/**
-    - application-code/app-tier/**
-    - application-code/web-tier/**   # <- ✅ include built frontend here
+    - '**/*'
