@@ -21,6 +21,7 @@ phases:
   post_build:
     commands:
       - echo Build phase completed.
+      - chmod +x scripts/*.sh
 
 artifacts:
   files:
